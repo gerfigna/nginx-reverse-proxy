@@ -1,9 +1,9 @@
-FROM nginx
+FROM ubuntu/apache2:2.4-22.04_edge
+RUN a2enmod headers
+RUN a2enmod proxy
+RUN a2enmod ssl
+RUN a2enmod rewrite
 
 COPY ./provision/etc /etc
-COPY ./backend-not-found.html /var/www/html/backend-not-found.html
 
-#COPY ./default.conf /etc/nginx/conf.d/default.conf
-#COPY ./backend-not-found.html /var/www/html/backend-not-found.html
-#COPY ./includes/ /etc/nginx/includes/
-#COPY ./ssl/ /etc/ssl/certs/nginx/
+#CMD ["httpd", "-D", "FOREGROUND"]

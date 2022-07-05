@@ -1,13 +1,19 @@
 version: '2'
 services:
-  nginx:
+  apache:
     build: .
     volumes:
-      - .:/usr/share/nginx/html
+      - ./www:/var/www
     ports:
       - "443:443"
+      - "8001:80"
+
+  cert:
+    image: stakater/ssl-certs-generator:1.0
+    volumes:
+      - ./etc/letsencrypt/live:/certs
 
 networks:
-  nginx:
+  apache:
   core_core:
     external: true
